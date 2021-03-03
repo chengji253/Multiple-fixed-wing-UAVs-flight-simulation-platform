@@ -2,6 +2,7 @@
 
 ## [传送门->中文的说明](READMEch.md)
 
+## 1. Introduction
 
 A multiple fixed-wing UAVs flight simulation platform built by matlab and simulink.
 
@@ -28,12 +29,12 @@ Output: 13 state quantities per drone per moment
 
 ---
 
-## The original intention of platform building
+## 2. The original intention of platform building
 
-Recently, there is a need to extend the algorithm of cooperative control to fixed-wing UAVs, but the cooperative control algorithm generally considers first-order and second-order integrators with a single vehicle model. Even if a fixed-wing model is considered, it is only a simple fixed-wing dynamics model.
+Recently, there is a need to extend the algorithm of cooperative control to fixed-wing UAVs, but the cooperative control algorithm generally considers first-order and second-order integrators or a single vehicle model. Even if a fixed-wing model is considered, it is only a simple fixed-wing dynamics model.
 
 But the real fixed-wing UAV flight control model is very complex and has strong nonlinearity.
-So how do I prove that my proposed fixed-wing cooperative control algorithm, or planning algorithm is effective. At this point, it is necessary to use a more realistic fixed-wing flight control to simulate the real UAV flight state. This is the reason why I built this platform.
+So how to prove that my proposed fixed-wing cooperative control algorithm, or planning algorithm is effective. At this point, it is necessary to use a more realistic fixed-wing flight control to simulate the real UAV flight state. This is the reason why I built this platform.
 
 In fact, Matlab comes with a simulation tool for fixed-wing UAVs, but the official documentation is small, and it is not very convenient to use, and the animation display can only show one aircraft, in short, it is not good.
 
@@ -43,27 +44,27 @@ The code built mainly refers to Randal's "Small Unmanned Aircraft Theory and Pra
 
 ---
 
-## How to use 
+## 3. How to use 
 
 The simulation platform can be divided into two parts, one is the calculation part 'uavA1' and the other is the display part 'uavShow'. 
 
 Just run the main.m file directly.
 
-In fact, you can also synchronize the calculation and display, real-time calculation and then display. But personally, I think this will affect the smoothness of the display, and the more aircraft the greater the impact.
+In fact, you can also synchronize the calculation and display, real-time calculation and then display. But personally, I think this will affect the smoothness of the display.  The more aircraft the greater the impact will be.
 
-### Calculation part
+### 3.1 Calculation part
 
-I am calculating the state of each aircraft in turn over time and storing them in the x1.mat file (x1 can be x2,x3.... which indicates the number of aircraft).
+The state of each aircraft is calculated in turn over time and will be stored in the x1.mat file (x1 can be x2,x3.... which indicates the number of aircraft).
 
 - CalAlluavs.m 
 
 ![avatar](picture/1.png)
 
-### Show part
+### 3.2 Show part
 
 - ShowAlluavs.m 
 
-The data of each aircraft is stored in x, path, waypoint data. 
+The data of each aircraft is stored in x, path, waypoint data. Using all the data, the show part could work.
 
 
 ## 4. How to read path files
@@ -86,6 +87,7 @@ The simulink time needs to be adjusted according to the length of your path file
 
  How to increase the aircraft is actually very easy but a little bit of boring. You need to add some code and change the corresponding numbers. The steps are as follows.
  
+## The steps are as follows:
 
 ### 1. main.m
 First of all, in the 'main.m' file, you can see that the code statements for each aircraft are obvious, add the corresponding sentences. 
