@@ -88,22 +88,127 @@ simulink的时间需要根据你的路径文件的长短调整，如果你的飞
 ### 1.main.m
  首先在main.m文件中,可以看到每架飞机的代码语句是很明显的，增加相应的句子。如下图：
 
-![avatar](picture/4.png)
+```matlab
+%----------------
+uavW = 1;
+save('uavW.mat','uavW');
+sim('New_mavsim_chap12');
+
+ii = 1;
+eval(['x' num2str(ii) '= x;'])
+eval(['path' num2str(ii) '= path;'])
+eval(['waypoints' num2str(ii) '= waypoints;'])
+
+save('x1.mat','x1','path1','waypoints1');
+%----------------
+clear;
+uavW = 2;
+uavi = uavW;
+save('uavW.mat','uavW');
+sim('New_mavsim_chap12');
+
+ii = 2;
+eval(['x' num2str(ii) '= x;'])
+eval(['path' num2str(ii) '= path;'])
+eval(['waypoints' num2str(ii) '= waypoints;'])
+save('x2.mat','x2','path2','waypoints2');
+%----------------
+clear;
+uavW = 3;
+save('uavW.mat','uavW');
+sim('New_mavsim_chap12');
+
+ii = 3;
+eval(['x' num2str(ii) '= x;'])
+eval(['path' num2str(ii) '= path;'])
+eval(['waypoints' num2str(ii) '= waypoints;'])
+save('x3.mat','x3','path3','waypoints3');
+%----------------
+clear;
+uavW = 4;
+
+save('uavW.mat','uavW');
+sim('New_mavsim_chap12');
+
+ii = 4;
+eval(['x' num2str(ii) '= x;'])
+eval(['path' num2str(ii) '= path;'])
+eval(['waypoints' num2str(ii) '= waypoints;'])
+save('x4.mat','x4','path4','waypoints4');
+%----------------
+clear;
+uavW = 5;
+save('uavW.mat','uavW');
+sim('New_mavsim_chap12');
+
+ii = 5;
+eval(['x' num2str(ii) '= x;'])
+eval(['path' num2str(ii) '= path;'])
+eval(['waypoints' num2str(ii) '= waypoints;'])
+save('x5.mat','x5','path5','waypoints5');
+
+```
 
 ### 2. uavShow/drawEnvironments5.m
 
 增加uavShow/drawEnvironments5.m的句子，这里的句子看似很多很复杂，但是不用搞明白它是什么意思，只需要机械地增加，然后把数字改一下就行。如果你看一下uavShow/drawEnvironments5.m这个文件，你就明白我在说什么了。
 
 
-![avatar](picture/5.png)
+```matlab
+%----------------1-----------------------------------
+    NN = 0;
+    pn1       = uu(1+NN);       % inertial North position     
+    pe1       = uu(2+NN);       % inertial East position
+    pd1       = uu(3+NN);       % inertial Down position
+    u1        = uu(4+NN);       % body frame velocities
+    v1        = uu(5+NN);       
+    w1        = uu(6+NN);       
+    phi1      = uu(7+NN);       % roll angle         
+    theta1    = uu(8+NN);       % pitch angle     
+    psi1      = uu(9+NN);       % yaw angle     
+    p1        = uu(10+NN);      % roll rate
+    q1        = uu(11+NN);      % pitch rate     
+    r1        = uu(12+NN);      % yaw rate    
+    t1        = uu(13+NN);      % time
+    
+    NN = NN + 13;
+    path1     = uu(1+NN:13+NN); 
+    NN = NN + 13;
+    num_waypoints1 = uu(1+NN);
+    waypoints1     = reshape(uu(2+NN:5*num_waypoints1+1+NN),5,num_waypoints1)'; 
+
+    % define persistent variables 
+    persistent aircraft_handle1;  % figure handle for MAV
+    persistent path_handle1;      % handle for straight-line or orbit path
+    persistent waypoint_handle1;  % handle for waypoints
+    persistent Faces1
+    persistent Vertices1
+    persistent facecolors1
+
+```
+---
+
+```matlab
+[Vertices1,Faces1,facecolors1] = defineAircraftBody(scale);                              
+        aircraft_handle1 = drawBody(Vertices1,Faces1,facecolors1,...
+                                   pn1,pe1,pd1,phi1,theta1,psi1,...
+                                   [], 'normal');
+        hold on
+        waypoint_handle1 = drawWaypoints(waypoints1, P.R_min, [], 'normal');
+        path_handle1 = drawPath(path1, S, [], 'normal');
+
+
+```
 
 ---
 
-![avatar](picture/6.png)
-
----
-
-![avatar](picture/7.png)
+```matlab
+drawBody(Vertices1,Faces1,facecolors1,...
+                     pn1,pe1,pd1,phi1,theta1,psi1,...
+                     aircraft_handle1);
+        drawWaypoints(waypoints1, P.R_min, waypoint_handle1);
+        drawPath(path1, S, path_handle1);
+```
 
 ### 3.uavShow/mavsim_show.slx
 
