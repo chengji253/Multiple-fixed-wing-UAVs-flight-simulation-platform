@@ -224,7 +224,7 @@ drawBody(Vertices1,Faces1,facecolors1,...
 
 Open the uavShow/mavsim_show.slx file, simply add a few boxes and then just connect them.
 
-For example, if you want to add the sixth uav, add four boxes: x6, time, path6, waypoints6, and then line them up behind each other.
+For example, if you want to add the sixth uav, add four boxes: x6, time, path6, waypoints6, and then line them up down behind.
 
 ![avatar](picture/3.png)
 
