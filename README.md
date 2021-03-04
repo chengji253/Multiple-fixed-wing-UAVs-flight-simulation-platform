@@ -39,7 +39,7 @@ You know strict mathematical proof is very difficult, but it can be proven to wo
 At this point, it is necessary to use a more realistic fixed-wing flight control model to simulate the real UAV flight state. This is the reason why I built this platform.
 
 In fact, Matlab has a simulation tool for fixed-wing UAVs( [Matlab fixed-wing UAV tool ](https://ww2.mathworks.cn/help/uav/ref/fixedwing.html
-)), but the official documentation is small, and it is not very convenient to use, and the animation display can only show one aircraft. In short, it is not convenient to use.
+)), but the official documentation is small, and it is not very convenient to use, and the animation display can only show one aircraft. In short, it is not good enough.
 
 
 The code mainly refers to Randal's "Small Unmanned Aircraft Theory and Practice", which the flight control principle used in code I hardly understand. My job is to integrate them and  show them inside one screen. As a person who does planning, you don't have to figure out all the underlying control principles.
