@@ -31,14 +31,18 @@ Output: 13 state quantities per drone per moment
 
 ## 2. The original intention of platform building
 
-Recently, there is a need to extend the algorithm of cooperative control to fixed-wing UAVs, but the cooperative control algorithm generally considers first-order and second-order integrators or a single vehicle model. Even if a fixed-wing model is considered, it is only a simple fixed-wing dynamics model.
+Recently, there is a need to extend the algorithm of cooperative control to fixed-wing UAVs, but the cooperative control algorithm generally considers first-order and second-order integrators or a bicycle model. Even if a fixed-wing model is considered, it is only a simple fixed-wing dynamics model.
 
 But the real fixed-wing UAV flight control model is very complex and has strong nonlinearity.
-So how to prove that my proposed fixed-wing cooperative control algorithm, or planning algorithm is effective. At this point, it is necessary to use a more realistic fixed-wing flight control to simulate the real UAV flight state. This is the reason why I built this platform.
+So how to prove that my proposed fixed-wing cooperative control algorithm, or planning algorithm is effective. 
+You know strict mathematical proof is very difficult, but it can be proven to work well in engineering.
+At this point, it is necessary to use a more realistic fixed-wing flight control model to simulate the real UAV flight state. This is the reason why I built this platform.
 
-In fact, Matlab comes with a simulation tool for fixed-wing UAVs, but the official documentation is small, and it is not very convenient to use, and the animation display can only show one aircraft, in short, it is not good.
+In fact, Matlab has a simulation tool for fixed-wing UAVs( [Matlab fixed-wing UAV tool ](https://ww2.mathworks.cn/help/uav/ref/fixedwing.html
+)), but the official documentation is small, and it is not very convenient to use, and the animation display can only show one aircraft. In short, it is not convenient to use.
 
-The code built mainly refers to Randal's "Small Unmanned Aircraft Theory and Practice", which has a flight control code principle that I don't understand at all. My job is to integrate them and  show them inside one screen.
+
+The code mainly refers to Randal's "Small Unmanned Aircraft Theory and Practice", which the flight control principle used in code I hardly understand. My job is to integrate them and  show them inside one screen. As a person who does planning, you don't have to figure out all the underlying control principles.
 
 ![avatar](picture/small.png)
 
@@ -225,3 +229,4 @@ For example, if you want to add the sixth uav, add four boxes: x6, time, path6, 
 
 --------
 
+### If you think this platform is not bad, please give me a Star or Folk. Thank you.
