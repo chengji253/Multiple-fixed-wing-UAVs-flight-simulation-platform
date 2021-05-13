@@ -90,6 +90,57 @@ Find the corresponding code in the file and change the name of '5jia.mat' .
 
 The simulink time needs to be adjusted according to the length of your path file, if your uav obviously did not run through your path, you need to adjust the time longer.
 
+### Details about--- getWpp( ) function
+
+```matlab
+function [num_waypoints , wpp] = getWpp(P,uav)
+    load '5jia3.mat'
+
+    a1 = 2;
+    a2 = 400;
+    num_waypoints = a2/a1;       
+    wpp = [];
+    i1 = uav;
+
+    for i = 1:a1:a2
+        x = [];
+        x = Xplot2(i,6*i1-5:6*i1-3);
+        x(3) = -x(3);
+        x = [x -9999 Xplot2(i,6*i1-2)];
+        wpp = [wpp;x];    
+    end
+```
+
+
+5jia3.mat: The file which stores  the states of 5 aircraft
+
+400x30
+
+400:Step length 
+
+30: 5x6  6 state quantities for 5 aircraft
+
+positions in three directions：x y z 
+
+velocity :v 
+
+Two angles of the velocity : theta  phi (velocity has no Rolling angle )_
+
+14-20 line:dealing with the file 5jia3.mat 
+
+x = Xplot2(i,6*i1-5:6*i1-3): 6*i1-5:6*i1-3 to get the positions x,y,z
+
+ 6*i1-2 to get the velocity
+
+Now I have 400 steps of states to pass, and I don't want to pass each of them. So I'll pass every other one(1 , 3, 5... ), which is a1=2. Every two passes a1=3(1, 4, 7...). 
+
+If you want to read your own path file, you can follow the format of my "5jia3.mat" file to generate it, or you can set up your own path file.
+
+As you can see, I just passed the position and velocity, not the angle of the velocity. So the subsequent flight control is only tracking the position point according to the reference speed when tracking.
+
+
+
+
 ## 5. How to increase the number of uavs
 
  How to increase the aircraft is actually very easy but a little bit of boring. You need to add some code and change the corresponding numbers. The steps are as follows.
