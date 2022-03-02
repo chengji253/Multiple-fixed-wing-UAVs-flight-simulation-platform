@@ -282,5 +282,41 @@ For example, if you want to add the sixth uav, add four boxes: x6, time, path6, 
 ![avatar](picture/3.png)
 
 --------
+## 5. How to add obstacles
 
-### If you think this platform is not bad, please give me a Star or Folk. Thank you.
+![avatar](picture/fixobs.gif)
+
+You can add some obstacles to test your collision avoidance algorithm.
+
+In the file 'drawEnvironment1.m', the  "buildingVertFace" is the main function to build your map. Just add some parameters to it. Then you can get your own obstacles map.
+
+```matlab
+function drawMap(map)%,path,smoothedPath,tree,R_min)
+  
+ 
+  % draw buildings 
+  V = [];
+  F = [];
+  patchcolors = [];
+  count = 0;
+  for i=1:map.NumBlocks,
+      for j=1:map.NumBlocks,
+        [Vtemp,Ftemp,patchcolorstemp] = buildingVertFace(map.buildings_n(i),...
+            map.buildings_e(j),map.BuildingWidth,map.heights(j,i));
+        V = [V; Vtemp];
+        Ftemp = Ftemp + count;
+        F = [F; Ftemp];
+        count = count + 8;
+        patchcolors = [patchcolors;patchcolorstemp];
+      end
+  end
+  
+  patch('Vertices', V, 'Faces', F,...
+                 'FaceVertexCData',patchcolors,...
+                 'FaceColor','flat');
+ 
+
+end
+
+```
+
