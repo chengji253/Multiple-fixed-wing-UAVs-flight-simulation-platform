@@ -1,12 +1,8 @@
 # Multiple fixed-wing UAVs flight simulation platform
 
-
-
-## 1. Introduction
+## Introduction
 
 A multiple fixed-wing UAVs flight simulation platform built by matlab and simulink.
-
-## [传送门->中文的说明](READMEch.md)
 
 The example given here has 5 UAVs, but of course you can expand it to 10, 20 or even more if you are willing to take the time.
 
@@ -28,30 +24,13 @@ Output: 13 state quantities per drone per moment
     r1             % yaw rate    
     t1             % time
 
+![avatar](picture/fixobs.gif)
 ![avatar](picture/1.gif)
-
 ---
 
-## 2. The original intention of platform building
-
-Recently, there is a need to extend the algorithm of cooperative control to fixed-wing UAVs, but the cooperative control algorithm generally considers first-order and second-order integrators or a bicycle model. Even if a fixed-wing model is considered, it is only a simple fixed-wing dynamics model.
-
-But the real fixed-wing UAV flight control model is very complex and has strong nonlinearity.
-So how to prove that my proposed fixed-wing cooperative control algorithm, or planning algorithm is effective. 
-You know strict mathematical proof is very difficult, but it can be proven to work well in engineering.
-At this point, it is necessary to use a more realistic fixed-wing flight control model to simulate the real UAV flight state. This is the reason why I built this platform.
-
-In fact, Matlab has a simulation tool for fixed-wing UAVs( [Matlab fixed-wing UAV tool ](https://ww2.mathworks.cn/help/uav/ref/fixedwing.html
-)), but the official documentation is small, and it is not very convenient to use, and the animation display can only show one aircraft. In short, it is not good enough.
 
 
-The code mainly refers to Randal's "Small Unmanned Aircraft Theory and Practice", which the flight control principle used in code I hardly understand. My job is to integrate them and  show them inside one screen. As a person who does planning, you don't have to figure out all the underlying control principles.
-
-![avatar](picture/small.png)
-
----
-
-## 3. How to use 
+##  How to use 
 
 The simulation platform can be divided into two parts, one is the calculation part 'uavA1' and the other is the display part 'uavShow'. 
 
@@ -59,7 +38,7 @@ Just run the main.m file directly.
 
 In fact, you can also synchronize the calculation and display, real-time calculation and then display. But personally, I think this will affect the smoothness of the display.  The more aircraft the greater the impact will be.
 
-### 3.1 Calculation part
+###  Calculation part
 
 The state of each aircraft is calculated in turn over time and will be stored in the x1.mat file (x1 can be x2,x3.... which indicates the number of aircraft).
 
@@ -67,14 +46,14 @@ The state of each aircraft is calculated in turn over time and will be stored in
 
 ![avatar](picture/1.png)
 
-### 3.2 Show part
+###  Show part
 
 - ShowAlluavs.m 
 
 The data of each aircraft is stored in x, path, waypoint data. Using all the data, the show part could work.
 
 
-## 4. How to read path files
+##  How to read path files
 
 The folder 'data' provides some path files for 5 aircraft that can be used.
 
@@ -141,7 +120,7 @@ As you can see, I just passed the position and velocity, not the angle of the ve
 
 
 
-## 5. How to increase the number of uavs
+##  How to increase the number of uavs
 
  How to increase the aircraft is actually very easy but a little bit of boring. You need to add some code and change the corresponding numbers. The steps are as follows.
  
@@ -212,7 +191,7 @@ save('x5.mat','x5','path5','waypoints5');
 
 ```
 
-### 2. uavShow/drawEnvironments5.m
+### uavShow/drawEnvironments5.m
 
 Add the sentence of uavShow/drawEnvironments5.m. The sentence here looks complicated, but you don't have to figure out what it means. Just add it mechanically and change the numbers. 
 If you look at the file uavShow/drawEnvironments5.m, you'll see what I'm talking about.
@@ -273,7 +252,7 @@ drawBody(Vertices1,Faces1,facecolors1,...
         drawPath(path1, S, path_handle1);
 ```
 
-### 3.uavShow/mavsim_show.slx
+### uavShow/mavsim_show.slx
 
 Open the uavShow/mavsim_show.slx file, simply add a few boxes and then just connect them.
 
@@ -282,9 +261,7 @@ For example, if you want to add the sixth uav, add four boxes: x6, time, path6, 
 ![avatar](picture/3.png)
 
 --------
-## 5. How to add obstacles
-
-![avatar](picture/fixobs.gif)
+##  How to add obstacles
 
 You can add some obstacles to test your collision avoidance algorithm.
 
@@ -320,3 +297,9 @@ end
 
 ```
 
+
+## Acknowledgment
+
+Randal's "Small Unmanned Aircraft Theory and Practice".
+
+![avatar](picture/small.png)
