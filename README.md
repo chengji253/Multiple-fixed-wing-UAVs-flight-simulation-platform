@@ -297,9 +297,10 @@ end
 
 ```
 
-
 ## Acknowledgment
 
 Randal's "Small Unmanned Aircraft Theory and Practice".
+
+https://github.com/byu-magicc/mavsim_public
 
 ![avatar](picture/small.png)
